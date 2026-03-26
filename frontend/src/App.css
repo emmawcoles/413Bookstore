@@ -70,6 +70,13 @@
   margin-top: 1rem;
 }
 
+.cart-summary {
+  padding: 1rem;
+  border: 1px solid rgba(88, 60, 31, 0.12);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.55);
+}
+
 .status-panel {
   min-height: 12rem;
   display: grid;

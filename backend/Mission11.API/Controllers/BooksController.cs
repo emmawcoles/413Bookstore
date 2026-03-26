@@ -13,7 +13,8 @@ public class BooksController(BookstoreContext context) : ControllerBase
     public async Task<ActionResult<BooksResponse>> GetBooks(
         [FromQuery] int pageSize = 5,
         [FromQuery] int pageNum = 1,
-        [FromQuery] string sortOrder = "asc")
+        [FromQuery] string sortOrder = "asc",
+        [FromQuery] string? category = null)
     {
         if (pageSize <= 0)
         {
@@ -26,6 +27,12 @@ public class BooksController(BookstoreContext context) : ControllerBase
         }
 
         IQueryable<Book> query = context.Books.AsNoTracking();
+
+        if (!string.IsNullOrWhiteSpace(category) &&
+            !string.Equals(category, "All", StringComparison.OrdinalIgnoreCase))
+        {
+            query = query.Where(book => book.Category == category);
+        }
 
         query = string.Equals(sortOrder, "desc", StringComparison.OrdinalIgnoreCase)
             ? query.OrderByDescending(book => book.Title)
