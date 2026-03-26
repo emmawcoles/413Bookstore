@@ -160,7 +160,7 @@ function App() {
     <main className="bookstore-shell">
       <section className="container py-5">
         <div className="hero-card shadow-sm">
-          <p className="eyebrow mb-2">Mission 11 Online Bookstore</p>
+          <p className="eyebrow mb-2">IS 413 Project Bookstore</p>
           <div className="d-flex flex-column flex-lg-row justify-content-between gap-4 align-items-lg-end">
             <div>
               <h1 className="display-5 fw-semibold mb-3">Emma&apos;s Online Bookstore</h1>
