@@ -1,10 +1,11 @@
-# IS 413 Mission 11 Bookstore
+# IS 413 Mission 11 and 12 Bookstore
 
-This project is an online bookstore built with an ASP.NET Core API backend and a React frontend. It uses the provided SQLite database and displays books with pagination, adjustable page size, Bootstrap styling, and title sorting.
+This project is an online bookstore built with an ASP.NET Core API backend and a React frontend. It uses the provided SQLite database and now includes the Mission 11 and Mission 12 requirements: pagination, adjustable page size, title sorting, category filtering, a session-based shopping cart, and Bootstrap-based layout/styling.
 
 ## Features
 
 - Connects to the provided `Bookstore.sqlite` database
+- Supports backend and frontend category filtering
 - Lists all required book fields:
   - Title
   - Author
@@ -17,6 +18,14 @@ This project is an online bookstore built with an ASP.NET Core API backend and a
 - Shows 5 books per page by default
 - Lets the user change the number of results per page
 - Supports sorting by title
+- Includes a shopping cart with:
+  - Add to Cart
+  - quantity tracking
+  - subtotal and total calculations
+  - session persistence with `sessionStorage`
+  - cart summary on the main page
+  - full cart view with Continue Shopping
+- Uses Bootstrap Grid for layout
 - Uses Bootstrap for styling
 
 ## Project Structure
@@ -101,14 +110,22 @@ npm run lint
 
 `GET /api/books?pageSize=5&pageNum=1&sortOrder=asc`
 
+### Get paginated books filtered by category
+
+`GET /api/books?pageSize=5&pageNum=1&sortOrder=asc&category=Biography`
+
 Query parameters:
 
 - `pageSize`: number of books per page
 - `pageNum`: current page number
 - `sortOrder`: `asc` or `desc`
+- `category`: optional category filter; use `All` or omit it to return all books
 
 ## Notes
 
 - The backend model matches the `Books` table in the provided database.
 - The frontend resets to page 1 when the page size changes.
+- The frontend resets to page 1 when the category changes.
 - Title sorting can be toggled between ascending and descending order.
+- The shopping cart is stored in `sessionStorage` for the duration of the browser session.
+- The full cart view uses a simple frontend toggle so users can continue shopping without losing their page, category, or sort state.
