@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build": "npm --prefix frontend run build"
+  },
   "devDependencies": {
     "eslint": "^10.1.0",
     "eslint-config-prettier": "^10.1.8",
