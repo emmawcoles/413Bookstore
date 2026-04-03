@@ -6,4 +6,5 @@ frontend-run.log
 frontend-run.err.log
 backend/**/bin/
 backend/**/obj/
+backend/**/publish/
 .vs/
