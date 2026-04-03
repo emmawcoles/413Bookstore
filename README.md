@@ -1,6 +1,6 @@
-# IS 413 Mission 11 and 12 Bookstore
+# IS 413 Missions 11-13 Bookstore
 
-This project is an online bookstore built with an ASP.NET Core API backend and a React frontend. It uses the provided SQLite database and now includes the Mission 11 and Mission 12 requirements: pagination, adjustable page size, title sorting, category filtering, a session-based shopping cart, and Bootstrap-based layout/styling.
+This project is an online bookstore built with an ASP.NET Core API backend and a React frontend. It uses the provided SQLite database and includes Missions 11, 12, and 13 requirements: pagination, adjustable page size, title sorting, category filtering, a session-based shopping cart, Bootstrap-based layout/styling, and full admin CRUD for books.
 
 ## Features
 
@@ -25,15 +25,21 @@ This project is an online bookstore built with an ASP.NET Core API backend and a
   - session persistence with `sessionStorage`
   - cart summary on the main page
   - full cart view with Continue Shopping
+- Admin page (`/adminbooks`) with:
+  - Add new books
+  - Edit existing books
+  - Delete books with confirmation
+- Client-side routing with React Router
 - Uses Bootstrap Grid for layout
 - Uses Bootstrap for styling
 
 ## Project Structure
 
-- `backend/Mission11.API`
-  ASP.NET Core Web API connected to SQLite with Entity Framework Core
-- `frontend`
-  React + Vite frontend that calls the backend API
+- `backend/Mission11.API` — ASP.NET Core Web API connected to SQLite with Entity Framework Core
+- `frontend/src/pages/` — Page components (`BooksPage`, `AdminBooksPage`)
+- `frontend/src/components/` — Form components (`AddBookForm`, `EditBookForm`)
+- `frontend/src/api/` — API helper functions (`fetchBooks`, `addBook`, `updateBook`, `deleteBook`)
+- `frontend/src/types.ts` — Shared TypeScript types (`Book`, `BooksResponse`, `CartItem`)
 
 ## Requirements
 
@@ -104,7 +110,7 @@ cd frontend
 npm run lint
 ```
 
-## Main API Endpoint
+## API Endpoints
 
 ### Get paginated books
 
@@ -121,11 +127,27 @@ Query parameters:
 - `sortOrder`: `asc` or `desc`
 - `category`: optional category filter; use `All` or omit it to return all books
 
+### Add a book
+
+`POST /api/books` — JSON body with book fields (title, author, publisher, isbn, classification, category, pageCount, price)
+
+### Update a book
+
+`PUT /api/books/{id}` — JSON body with full book object including bookID
+
+### Delete a book
+
+`DELETE /api/books/{id}`
+
+## Frontend Routes
+
+- `/` — Book catalog with pagination, filtering, sorting, and shopping cart
+- `/adminbooks` — Admin page for managing books (add, edit, delete)
+
 ## Notes
 
 - The backend model matches the `Books` table in the provided database.
-- The frontend resets to page 1 when the page size changes.
-- The frontend resets to page 1 when the category changes.
+- The frontend resets to page 1 when the page size or category changes.
 - Title sorting can be toggled between ascending and descending order.
 - The shopping cart is stored in `sessionStorage` for the duration of the browser session.
-- The full cart view uses a simple frontend toggle so users can continue shopping without losing their page, category, or sort state.
+- `public/routes.json` provides SPA fallback routing for deployment (e.g., Azure Static Web Apps).
