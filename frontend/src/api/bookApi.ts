@@ -1,5 +1,7 @@
 import type { Book, BooksResponse } from '../types'
 
+const API_BASE = 'https://emma-bookstore-api-4-fnfuhfhfgvbsgccz.centralus-01.azurewebsites.net'
+
 interface FetchBooksParams {
   pageSize?: number
   pageNum?: number
@@ -18,7 +20,7 @@ export async function fetchBooks(
     category: params.category ?? 'All',
   })
 
-  const response = await fetch(`/api/books?${searchParams.toString()}`, {
+  const response = await fetch(`${API_BASE}/api/books?${searchParams.toString()}`, {
     signal,
   })
 
@@ -30,7 +32,7 @@ export async function fetchBooks(
 }
 
 export async function addBook(book: Omit<Book, 'bookID'>): Promise<Book> {
-  const response = await fetch('/api/books', {
+  const response = await fetch(`${API_BASE}/api/books`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(book),
@@ -44,7 +46,7 @@ export async function addBook(book: Omit<Book, 'bookID'>): Promise<Book> {
 }
 
 export async function updateBook(id: number, book: Book): Promise<void> {
-  const response = await fetch(`/api/books/${id}`, {
+  const response = await fetch(`${API_BASE}/api/books/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(book),
@@ -56,7 +58,7 @@ export async function updateBook(id: number, book: Book): Promise<void> {
 }
 
 export async function deleteBook(id: number): Promise<void> {
-  const response = await fetch(`/api/books/${id}`, {
+  const response = await fetch(`${API_BASE}/api/books/${id}`, {
     method: 'DELETE',
   })
 

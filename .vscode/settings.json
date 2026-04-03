@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/d5aa2d45-702d-4e04-9ca5-be8cc7bf3574/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/emma-bookstore-api-4",
+    "appService.deploySubpath": "backend\\Mission11.API\\publish"
+}
