@@ -8,7 +8,9 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("FrontendClient", policy =>
     {
-        policy.WithOrigins("http://localhost:5173")
+        // Allow both the local Vite app and the deployed Azure Static Web Apps frontend.
+        policy.WithOrigins("http://localhost:5173",
+                            "https://proud-forest-082a3c710.7.azurestaticapps.net")
             .AllowAnyHeader()
             .AllowAnyMethod();
     });

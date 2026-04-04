@@ -8,6 +8,7 @@ const CART_STORAGE_KEY = 'bookstore-cart'
 function BooksPage() {
   const [books, setBooks] = useState<Book[]>([])
   const [categories, setCategories] = useState<string[]>([])
+  // Restore the shopping cart from session storage when the page first loads.
   const [cart, setCart] = useState<CartItem[]>(() => {
     const savedCart = sessionStorage.getItem(CART_STORAGE_KEY)
 
@@ -63,6 +64,7 @@ function BooksPage() {
   useEffect(() => {
     const controller = new AbortController()
 
+    // Load a large page once so the category filter can be built client-side.
     async function loadCategories() {
       try {
         const data: BooksResponse = await fetchBooks(

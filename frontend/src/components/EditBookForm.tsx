@@ -13,6 +13,7 @@ function EditBookForm({ book, onSuccess, onCancel }: EditBookFormProps) {
   const [error, setError] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
+  // Convert numeric form fields from input strings before storing them in state.
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value, type } = e.target
     setFormData((prev) => ({

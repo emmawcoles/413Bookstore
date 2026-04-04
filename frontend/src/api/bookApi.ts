@@ -1,5 +1,6 @@
 import type { Book, BooksResponse } from '../types'
 
+// Frontend requests go directly to the deployed Azure API instead of the Vite dev proxy.
 const API_BASE = 'https://emma-bookstore-api-4-fnfuhfhfgvbsgccz.centralus-01.azurewebsites.net'
 
 interface FetchBooksParams {

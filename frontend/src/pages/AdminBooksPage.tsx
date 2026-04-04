@@ -10,9 +10,11 @@ function AdminBooksPage() {
   const [books, setBooks] = useState<Book[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
+  // Keep admin CRUD in one page by switching between list, add, and edit views.
   const [viewMode, setViewMode] = useState<ViewMode>('list')
   const [editingBook, setEditingBook] = useState<Book | null>(null)
 
+  // Reuse this loader after add, edit, and delete actions to refresh the table.
   async function loadAllBooks() {
     try {
       setIsLoading(true)
